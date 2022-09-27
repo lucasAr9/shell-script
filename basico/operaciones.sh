@@ -2,7 +2,7 @@
 
 
 # variables de prueba
-numA=2
+numA=3
 numB=2
 
 # operaciones aritmeticas basicas de bash
