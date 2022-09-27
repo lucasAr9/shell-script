@@ -26,7 +26,7 @@ echo "${myArray[*]}"
 
 echo "
 ---> Eliminar un elemento del arreglo en la posicion 1"
-unset myArray[1]
+unset "myArray[1]"
 echo "${myArray[*]}"
 
 echo "
