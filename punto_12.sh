@@ -37,13 +37,13 @@ calculadora() {
 }
 
 
-if [ "$#" == 0 ]; then
+if [ "$#" -eq 0 ]; then
     read -rp "Ingrese el primer numero: " num1
     read -rp "Ingrese el primer numero: " num2
     con_read "$num1" "$num2"
-elif [ "$#" == 2 ]; then
+elif [ "$#" -eq 2 ]; then
     con_read "$1" "$2"
-elif [ "$#" == 3 ]; then
+elif [ "$#" -eq 3 ]; then
     resultado=$(calculadora "$1" "$2" "$3")
     echo "$1 $2 $3 es $resultado" 
 else
