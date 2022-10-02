@@ -5,11 +5,11 @@
 # caso de que no exista el archivo/directorio cree un directorio con el nombre recibido
 # como parámetro.
 
-if [ "$#" -ne 1 ]; then
+if [ $# -ne 1 ]; then
     echo "Los parametros son incorrectos."
     exit 1
 fi
-# usar el -e antes de -d y -f
+
 if [ -d "$1" ]; then
     echo "$1 es un directorio."
 elif [ -f "$1" ]; then
