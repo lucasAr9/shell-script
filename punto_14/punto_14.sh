@@ -3,11 +3,12 @@
 
 # Para crear las carpetas de prueba
 crear_carpeta() {
-    mkdir carpeta_punto_14
-    cd carpeta_punto_14 || exit
+    nombre_carpeta="reemplazar_principio"
+    mkdir $nombre_carpeta
+    cd $nombre_carpeta || exit
     for((i=0;i<5;i++)); do
         touch "archivo$i.txt"
-    done    
+    done
 }
 
 
@@ -15,43 +16,34 @@ crear_carpeta() {
 # como parametro agregandole una CADENA, contemplando las opciones:
 # “-a CADENA”: renombra el fichero concatenando CADENA al final del nombre del archivo
 # “-b CADENA”: renombra el fichero concantenado CADENA al principio del nombre del archivo
-cambiar_nombre() {
-    archivos=$(ls ./"$1")
-
-    if [ "$2" == "-a" ]; then
-        agregar_final "$archivos" "$1" "$3"
-    elif [ "$2" == "-b" ]; then
-        agregar_principio "$archivos" "$1" "$3"
-    else
-        echo "El parametro \"$2\" es incorrecto"
-    fi
-}
-
-
-agregar_principio() {
-    for item in $1; do
-        echo "${2}${item}"
-    done
-}
-
-
-agregar_principio() {
-    for item in $1; do
-        echo "${2}${item}"
-    done
-}
-
-
-# crear_carpeta
-
-if [ $# != 3 ]; then
-    echo "Los parametros son incorrectos"
-    exit 1
+if [ $# -ne 3 ]
+then
+	echo "La Cantidad de parametros es incorrecta"
+	exit 1
+fi
+if [ ! -d $1 ]
+then
+	echo "El primer parametro no es un directorio existente"
+	exit 2
+fi
+if [ -z $3 ]
+then
+	echo "El tercer parametro es nulo"
+	exit 3
 fi
 
-if [ ! -d "$1" ]; then
-    echo "El directorio \"$1\" no existe"
-    exit 2
-fi
-
-cambiar_nombre "$1" "$2" "$3"
+case $2 in
+	"-a")
+		for i in $(ls "$1"); do
+			mv $1/$i $1/$i$3
+		done
+		;;
+	"-b")
+		for i in $(ls "$1"); do
+			mv $1/$i $1/$3$i
+		done
+		;;
+	*)
+		echo "El segundo parametro debe ser -a o -b"
+		exit 4
+esac

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#Recibe parámetros -a CADENA o -b CADENA
-#$1 nombre del directorio, $2 es -a รณ -b, $3 es CADENA
-#Ejemplo de Ejecución:
+# Recibe parámetros -a CADENA o -b CADENA
+# $1 nombre del directorio, $2 es -a o -b, $3 es CADENA
+# Ejemplo de Ejecución:
 # bash -x ejercicio14RenombraArchivos /root/scripts/ejercicio14 -b zzzzzz
 if [ $# -ne 3 ]
 then
@@ -19,6 +19,7 @@ then
 	echo "El tercer parametro es nulo"
 	exit 3
 fi
+
 case $2 in
 	"-a")
 		for i in `ls $1`; do
