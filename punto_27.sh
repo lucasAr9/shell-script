@@ -15,28 +15,26 @@ inicializar () {
 
 agregar () {
     if [ $# -eq 0 ]; then
-        echo "La funcion debe recibir al menos un elemento a agregar."
+        echo "La funcion debe recibir un elemento a agregar."
         return 2
     fi
-    arreglo=($*)
+    arreglo+=($1)
     return 0
 }
 
 
 eliminar () {
     if [ $# -eq 0 ]; then
-        echo "La funcion debe recibir al menos una posicion para eliminar."
+        echo "La funcion debe recibir una posicion para eliminar."
         return 3
     fi
     
-    for pos in $*; do
-        if [ $pos -gt ${arreglo[*]} ]; then
-            echo "La posicion $pos no esta dentro del rango del arreglo, operacion rechazada."
-            return 31
-        fi
-    done
+    if [ $1 -ge ${#arreglo[*]} ]; then
+        echo "La posicion $1 no esta dentro del rango del arreglo, operacion rechazada."
+        return 31
+    fi
 
-    for pos in $*; do unset arreglo[$pos]; done
+    unset arreglo[$1]
 
     arreglo=(${arreglo[*]})
 
@@ -66,15 +64,19 @@ imprimir () {
 
 iniciar_con_valores () {
     # Parametro 1 = longitud del arreglo.
-    # Parametro 2 = elemento a agregar en todas las posiciones. (opcional)
-    # Si no recibe el parametro 2 agrega elementos random.
+    # Parametro 2 = elemento a agregar en todas las posiciones.
     if [ $# -eq 0 ]; then
-        echo "La funcion no admite parametros."
+        echo "La funcion debe recibir la longitud del arreglo y elemento a agregar."
         return 6
     fi
 
+    arreglo=()
+
+    for ((i=0; i<$1; i++)); do
+        arreglo+=($2)
+    done
+
     return 0
-    
 }
 
 
@@ -86,22 +88,33 @@ finalizar_programa () {
 while true; do
     echo "------------------------opciones------------------------"
     
-    select opcion in inicializar agregar eliminar longitud imprimir finalizar_programa; do
+    select opcion in inicializar agregar eliminar longitud imprimir iniciar_con_valores finalizar_programa; do
         case $opcion in
             inicializar)
                 inicializar
             ;;
             agregar)
-                agregar
+                echo "elemento a agregar:"
+                read num
+                agregar $num
             ;;
             eliminar)
-                eliminar
+                echo "posicion a eliminar:"
+                read num
+                eliminar $num
             ;;
             longitud)
                 longitud
             ;;
             imprimir)
                 imprimir
+            ;;
+            iniciar_con_valores)
+                echo "longitud del arreglo:"
+                read longitud
+                echo "elemento a agregar:"
+                read num
+                iniciar_con_valores $longitud $num
             ;;
             finalizar_programa)
                 finalizar_programa
