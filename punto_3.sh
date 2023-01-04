@@ -12,3 +12,4 @@ echo "Su apellido y nombre es: "
 echo "$apellido $nombre"
 echo "Su usuario es: $(whoami)"
 echo "Su directorio actual es: ${HOME}"
+hola
