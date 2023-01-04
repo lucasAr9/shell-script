@@ -1,10 +1,8 @@
 #!/bin/bash
-# Descomprimir todos los .zip del directorio pasado por parametro.
-# codigo 1   -> No se encontro ningun archivo .zip
-# codigo 2   -> El script no recibio ningun parametro.
-# codigo 3   -> El script recibio mas de dos parametros.
-# codigo 4   -> No se encontro el directorio de destino de los archivos.
 
+# $1 = directorio o archivo a descomprimir
+# $2 = directorio de destino de los archivos descomprimidos (opcional)
+# Descomprimir todos los .zip del directorio pasado por parametro.
 if [ $# -lt 1 ]; then
     echo "El script debe recibir al menos un directorio como parametro."
     exit 2
@@ -70,3 +68,8 @@ else
     echo "Se descomprimio del directorio '$pathBuscar' al directorio '$pathDescomprimir'" >> $log2
     exit 0
 fi
+
+# codigo 1   -> No se encontro ningun archivo .zip
+# codigo 2   -> El script no recibio ningun parametro.
+# codigo 3   -> El script recibio mas de dos parametros.
+# codigo 4   -> No se encontro el directorio de destino de los archivos.
