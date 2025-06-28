@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Si lo que se quiere es encriptar carpetas, primero hay que zipear
+# Si lo que se quiere es encriptar carpetas, primero hay que zipear.
 zip -r documentos.zip documentos # comprimir
 unzip documentos.zip # descomprimir
 
