@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Si lo que se quiere es encriptar carpetas, primero hay que zipear
-zip -r documentos.zip documentos
-unzip documentos.zip
+zip -r documentos.zip documentos # comprimir
+unzip documentos.zip # descomprimir
 
 # Encriptar un archivo. Le pone extencion .gpg
 gpg -c nombre_archivo.pdf
